@@ -3,351 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>肥仔提成计算器 (团队1%固定版)</title>
+    <title>肥仔三阶梯提成计算器</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-        }
-
-        body {
-            background-color: #f4f6f9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 16px;
-        }
-
-        .calculator-card {
-            background: #ffffff;
-            width: 100%;
-            max-width: 520px;
-            padding: 28px 24px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        h2 {
-            text-align: center;
-            color: #1a202c;
-            margin-bottom: 12px;
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .rule-badge {
-            background: #ebf8ff;
-            border: 1px solid #3182ce;
-            border-radius: 8px;
-            padding: 10px 14px;
-            margin-bottom: 20px;
-            font-size: 13px;
-            color: #2b6cb0;
-            line-height: 1.5;
-        }
-
-        .rule-badge strong {
-            color: #2c5282;
-        }
-
-        .input-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-            color: #4a5568;
-            font-size: 14px;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            font-size: 15px;
-            transition: all 0.2s ease;
-            outline: none;
-            background-color: #fff;
-        }
-
-        input:focus {
-            border-color: #3182ce;
-            box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15);
-        }
-
-        .result-box {
-            background-color: #f7fafc;
-            border-radius: 12px;
-            padding: 18px;
-            margin-top: 20px;
-            border: 1px solid #edf2f7;
-        }
-
-        .section-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #2d3748;
-            margin-bottom: 8px;
-            padding-bottom: 4px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .result-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #4a5568;
-        }
-
-        .result-detail {
-            font-size: 12px;
-            color: #718096;
-            margin-bottom: 12px;
-            padding-left: 8px;
-            border-left: 2px solid #cbd5e0;
-            line-height: 1.4;
-        }
-
-        .amount {
-            font-family: "Courier New", Courier, monospace;
-            font-weight: 700;
-            color: #2d3748;
-        }
-
-        .amount.highlight {
-            color: #d69e2e;
-        }
-
-        .total-box {
-            margin-top: 14px;
-            padding-top: 12px;
-            border-top: 2px dashed #cbd5e0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .total-box span {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1a202c;
-        }
-
-        .total-box .total-amount {
-            font-size: 22px;
-            font-family: "Courier New", Courier, monospace;
-            font-weight: 800;
-            color: #e53e3e;
-        }
-
-        .btn-copy {
-            width: 100%;
-            margin-top: 16px;
-            padding: 12px;
-            background-color: #3182ce;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-copy:hover {
-            background-color: #2b6cb0;
-        }
-
-        .btn-copy:active {
-            transform: scale(0.98);
-        }
-
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            display: none;
-            z-index: 100;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: #f4f6f9; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .calculator-card { background: #ffffff; width: 100%; max-width: 520px; padding: 28px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
+        h2 { text-align: center; color: #2c3e50; margin-bottom: 20px; font-size: 22px; }
+        .rule-badge { background-color: #ebf8ff; color: #2b6cb0; border: 1px solid #bee3f8; padding: 10px 14px; border-radius: 8px; font-size: 13px; line-height: 1.5; margin-bottom: 20px; }
+        .input-group { margin-bottom: 16px; }
+        label { display: block; margin-bottom: 6px; font-weight: 600; color: #4a5568; font-size: 14px; }
+        input { width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 16px; outline: none; }
+        input:focus { border-color: #3182ce; box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.15); }
+        .result-box { background-color: #f7fafc; border-radius: 12px; padding: 18px; margin-top: 20px; border: 1px solid #edf2f7; }
+        .result-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-size: 14px; color: #4a5568; }
+        .sub-item { font-size: 12px; color: #718096; padding-left: 12px; }
+        .result-item.total { margin-top: 8px; margin-bottom: 0; padding-top: 12px; border-top: 2px dashed #cbd5e0; font-size: 16px; font-weight: bold; color: #2b6cb0; }
+        .amount { font-family: monospace; font-weight: 600; }
+        .total .amount { color: #e53e3e; font-size: 20px; }
+        .btn-copy { width: 100%; margin-top: 16px; padding: 12px; background-color: #3182ce; color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn-copy:hover { background-color: #2b6cb0; }
     </style>
 </head>
 <body>
 
 <div class="calculator-card">
-    <h2>💰 肥仔提成计算器</h2>
+    <h2>💰 肥仔阶梯提成计算器</h2>
 
     <div class="rule-badge">
-        <strong>最新提成规则：</strong><br>
-        • <strong>个人提成（阶梯）</strong>：10万RMB以内按 <strong>2.5%</strong> | 超出10万RMB部分按 <strong>2.7%</strong><br>
-        • <strong>团队提成（固定）</strong>：固定按 <strong>1.0%</strong> 计算
+        <strong>📋 提成计算规则：</strong><br>
+        • 个人提成（RMB）：≤10万 (2.3%) | 10万~30万 (2.5%) | >30万 (2.7%)<br>
+        • 团队提成（RMB）：固定 1.0%
     </div>
 
-    <!-- 中美汇率 -->
     <div class="input-group">
         <label for="exchangeRate">中美汇率 (USD / CNY)</label>
         <input type="number" id="exchangeRate" step="0.0001" placeholder="例如: 7.23" oninput="calculate()">
     </div>
 
-    <!-- 肥仔个人销售额 -->
     <div class="input-group">
         <label for="personalSales">肥仔个人销售额 ($ USD)</label>
-        <input type="number" id="personalSales" step="1" placeholder="请输入美元销售额" oninput="calculate()">
+        <input type="number" id="personalSales" step="1" placeholder="请输入美元金额" oninput="calculate()">
     </div>
 
-    <!-- 团队销售额 -->
     <div class="input-group">
         <label for="teamSales">手下团队销售额 ($ USD)</label>
-        <input type="number" id="teamSales" step="1" placeholder="请输入美元销售额" oninput="calculate()">
+        <input type="number" id="teamSales" step="1" placeholder="请输入美元金额" oninput="calculate()">
     </div>
 
-    <!-- 计算结果展示区 -->
     <div class="result-box">
-        <!-- 个人计算明细 -->
-        <div class="section-title">👤 肥仔个人提成明细 (阶梯)</div>
-        <div class="result-row">
-            <span>折合人民币销售额:</span>
+        <div class="result-item">
+            <span>个人折合人民币销售额:</span>
             <span class="amount" id="personalRmb">¥ 0.00</span>
         </div>
-        <div class="result-detail" id="personalDetail">
-            10万内(2.5%): ¥ 0.00 | 超出(2.7%): ¥ 0.00
+        <div class="result-item sub-item">
+            <span>└ 0 ~ 10万部分 (2.3%):</span>
+            <span class="amount" id="tier1Comm">¥ 0.00</span>
         </div>
-        <div class="result-row">
+        <div class="result-item sub-item">
+            <span>└ 10万 ~ 30万部分 (2.5%):</span>
+            <span class="amount" id="tier2Comm">¥ 0.00</span>
+        </div>
+        <div class="result-item sub-item">
+            <span>└ 超过 30万部分 (2.7%):</span>
+            <span class="amount" id="tier3Comm">¥ 0.00</span>
+        </div>
+        <div class="result-item" style="margin-top: 8px;">
             <span>个人提成小计:</span>
-            <span class="amount highlight" id="personalComm">¥ 0.00</span>
+            <span class="amount" id="personalCommTotal">¥ 0.00</span>
         </div>
 
-        <!-- 团队计算明细 -->
-        <div class="section-title" style="margin-top: 14px;">👥 团队提成明细 (固定1%)</div>
-        <div class="result-row">
-            <span>折合人民币销售额:</span>
+        <hr style="border: none; border-top: 1px dashed #e2e8f0; margin: 10px 0;">
+
+        <div class="result-item">
+            <span>团队折合人民币销售额:</span>
             <span class="amount" id="teamRmb">¥ 0.00</span>
         </div>
-        <div class="result-detail" id="teamDetail">
-            固定提成率: 1.0%
-        </div>
-        <div class="result-row">
-            <span>团队提成小计:</span>
-            <span class="amount highlight" id="teamComm">¥ 0.00</span>
+        <div class="result-item">
+            <span>团队提成小计 (1.0%):</span>
+            <span class="amount" id="teamComm">¥ 0.00</span>
         </div>
 
-        <!-- 总计 -->
-        <div class="total-box">
-            <span>总计应得提成:</span>
-            <span class="total-amount" id="totalComm">¥ 0.00</span>
+        <div class="result-item total">
+            <span>总提成金额:</span>
+            <span class="amount" id="totalComm">¥ 0.00</span>
         </div>
     </div>
 
-    <button class="btn-copy" onclick="copyResults()">📋 复制计算汇总文本</button>
+    <button class="btn-copy" onclick="copyResult()">📋 复制计算结果汇总</button>
 </div>
 
-<div class="toast" id="toast">已复制计算结果到剪贴板</div>
-
 <script>
-    // 肥仔个人阶梯提成计算函数
-    function calcPersonalTiered(salesRmb) {
-        if (salesRmb <= 0) {
-            return { base: 0, extra: 0, total: 0 };
-        }
-        if (salesRmb <= 100000) {
-            const total = salesRmb * 0.025;
-            return { base: total, extra: 0, total: total };
-        } else {
-            const base = 100000 * 0.025; // 前10万按2.5% = 2500元
-            const extra = (salesRmb - 100000) * 0.027; // 超出部分按2.7%
-            return { base: base, extra: extra, total: base + extra };
-        }
-    }
-
-    // 团队固定1%提成计算函数
-    function calcTeamFixed(salesRmb) {
-        if (salesRmb <= 0) return 0;
-        return salesRmb * 0.01; // 固定 1%
-    }
-
     function calculate() {
         const rate = parseFloat(document.getElementById('exchangeRate').value) || 0;
         const personalUsd = parseFloat(document.getElementById('personalSales').value) || 0;
         const teamUsd = parseFloat(document.getElementById('teamSales').value) || 0;
 
-        // 折算人民币
         const personalRmb = personalUsd * rate;
         const teamRmb = teamUsd * rate;
 
-        // 计算各项提成
-        const personalRes = calcPersonalTiered(personalRmb);
-        const teamComm = calcTeamFixed(teamRmb);
-        const totalComm = personalRes.total + teamComm;
+        let t1 = 0, t2 = 0, t3 = 0;
 
-        // 更新界面 - 个人
+        if (personalRmb > 0) {
+            if (personalRmb <= 100000) {
+                t1 = personalRmb * 0.023;
+            } else if (personalRmb <= 300000) {
+                t1 = 100000 * 0.023;
+                t2 = (personalRmb - 100000) * 0.025;
+            } else {
+                t1 = 100000 * 0.023;
+                t2 = 200000 * 0.025;
+                t3 = (personalRmb - 300000) * 0.027;
+            }
+        }
+
+        const personalTotal = t1 + t2 + t3;
+        const teamTotal = teamRmb * 0.01;
+        const grandTotal = personalTotal + teamTotal;
+
         document.getElementById('personalRmb').innerText = '¥ ' + personalRmb.toFixed(2);
-        document.getElementById('personalDetail').innerText = 
-            `10万内(2.5%): ¥ ${personalRes.base.toFixed(2)} | 超出(2.7%): ¥ ${personalRes.extra.toFixed(2)}`;
-        document.getElementById('personalComm').innerText = '¥ ' + personalRes.total.toFixed(2);
+        document.getElementById('tier1Comm').innerText = '¥ ' + t1.toFixed(2);
+        document.getElementById('tier2Comm').innerText = '¥ ' + t2.toFixed(2);
+        document.getElementById('tier3Comm').innerText = '¥ ' + t3.toFixed(2);
+        document.getElementById('personalCommTotal').innerText = '¥ ' + personalTotal.toFixed(2);
 
-        // 更新界面 - 团队
         document.getElementById('teamRmb').innerText = '¥ ' + teamRmb.toFixed(2);
-        document.getElementById('teamDetail').innerText = 
-            `固定提成率: 1.0% | 计算金额: ¥ ${teamComm.toFixed(2)}`;
-        document.getElementById('teamComm').innerText = '¥ ' + teamComm.toFixed(2);
-
-        // 更新界面 - 总计
-        document.getElementById('totalComm').innerText = '¥ ' + totalComm.toFixed(2);
+        document.getElementById('teamComm').innerText = '¥ ' + teamTotal.toFixed(2);
+        document.getElementById('totalComm').innerText = '¥ ' + grandTotal.toFixed(2);
     }
 
-    function copyResults() {
+    function copyResult() {
         const rate = document.getElementById('exchangeRate').value || '0';
-        const personalRmb = document.getElementById('personalRmb').innerText;
-        const personalComm = document.getElementById('personalComm').innerText;
-        const teamRmb = document.getElementById('teamRmb').innerText;
-        const teamComm = document.getElementById('teamComm').innerText;
-        const totalComm = document.getElementById('totalComm').innerText;
+        const pUsd = document.getElementById('personalSales').value || '0';
+        const tUsd = document.getElementById('teamSales').value || '0';
+        
+        const pRmb = document.getElementById('personalRmb').innerText;
+        const pComm = document.getElementById('personalCommTotal').innerText;
+        const tRmb = document.getElementById('teamRmb').innerText;
+        const tComm = document.getElementById('teamComm').innerText;
+        const total = document.getElementById('totalComm').innerText;
 
-        const text = `【肥仔提成结算单】\n` +
-            `中美汇率: ${rate}\n` +
-            `-------------------\n` +
-            `个人销售额(RMB): ${personalRmb}\n` +
-            `个人提成 (阶梯): ${personalComm}\n` +
-            `-------------------\n` +
-            `团队销售额(RMB): ${teamRmb}\n` +
-            `团队提成 (固定1%): ${teamComm}\n` +
-            `===================\n` +
-            `总计提成: ${totalComm}`;
+        const text = `【肥仔提成计算汇总】\n` +
+                     `• 中美汇率: ${rate}\n` +
+                     `• 个人销售: $${pUsd} (折合 ${pRmb})\n` +
+                     `  └ 个人提成: ${pComm}\n` +
+                     `• 团队销售: $${tUsd} (折合 ${tRmb})\n` +
+                     `  └ 团队提成(1%): ${tComm}\n` +
+                     `----------------------\n` +
+                     `💰 应发总提成: ${total}`;
 
         navigator.clipboard.writeText(text).then(() => {
-            showToast('已复制计算结果到剪贴板');
+            alert('计算结果已复制到剪贴板！');
         }).catch(() => {
-            showToast('复制失败，请手动截图或复制');
+            alert('复制失败，请手动选择复制');
         });
     }
-
-    function showToast(msg) {
-        const toast = document.getElementById('toast');
-        toast.innerText = msg;
-        toast.style.display = 'block';
-        setTimeout(() => {
-            toast.style.display = 'none';
-        }, 2000);
-    }
-
-    // 初始化计算
-    calculate();
 </script>
 
 </body>
